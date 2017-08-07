@@ -322,15 +322,24 @@ strs varchar2(500) -- 14|14|11|8|... (max-345)
 	public static void writeToCsv(List<Kit> kits) {
 		
 		File file = null;
+		long startTime = System.currentTimeMillis();
 		
 	    try {
-	    	file = new File("C:\\work2\\ftdna\\out\\ftdna_results.csv");
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			String folder = classLoader.getResource("out").getFile();
+
+	    	file = new File(folder + "\\ftdna_results.csv");
+			System.out.println( "Writing " + kits.size() + " kits to " + file.getAbsolutePath() + "...");
+
 	        if(!file.exists())
 	            file.createNewFile();
 	    } catch(IOException e) {
 	    	System.out.println( "ERROR: " + e.getMessage() );
 	        throw new RuntimeException(e);
-	    }
+	    } catch(Exception e) {
+			System.out.println( "ERROR: " + e.getMessage() );
+			return;
+		}
 	    
 	    try ( final PrintWriter out = new PrintWriter(file.getAbsoluteFile()) ) {
 
@@ -343,5 +352,7 @@ strs varchar2(500) -- 14|14|11|8|... (max-345)
 	    	System.out.println( "ERROR: " + e.getMessage() );
 	        throw new RuntimeException(e);
 	    }
+
+		System.out.println("Wrote " + kits.size() + " kits in total, time: " + (System.currentTimeMillis() - startTime));
 	}	
 }

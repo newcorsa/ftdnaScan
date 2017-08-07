@@ -25,46 +25,29 @@ public class FtdnaScan {
 //		ArrayList<File> fileList = new ArrayList<>(Arrays.asList(curFiles));
 //		for(File file: fileList) {}
 		
-		List<Kit> kits = new ArrayList();
-		
-		kits.add(testkit); //TEST//
-		
-		File workDir = new File("C:\\work2\\ftdna\\in");
-		File[] curFiles = workDir.listFiles();
-		
-		if( curFiles != null )
-		{
-			for(int i = 0; i < 1 && i < curFiles.length; i++) {
-				if(curFiles[i].isFile()) {
-					System.out.println(curFiles[i].getPath());
-				
-					String filename = curFiles[i].getPath();
-				
-					FtdnaPage ftdnaPage = new FtdnaPage(filename);
-					List<Kit> pageKits = ftdnaPage.Parse();
-					System.out.println( "Loaded " + pageKits.size() + " kits from " + filename );
-				
-					kits.addAll(pageKits);
-				}
-			}
-		}
-		
-		System.out.println( "Loaded " + kits.size() + " kits in total" );
-		
+		List<Kit> kits = FileLoader.loadKitsFromResources();
+
 		for(Kit kit: kits) { 
 			if( kit.ancestor.contains("Ch.") )
 				kit.print_info(); 
 			}
-		
-		//Kit.writeToCsv(kits);
+
+		kits.stream()
+				.filter((k) -> k.country2.equalsIgnoreCase("Scotland"))
+				.forEach( k -> k.print_info() );
+
+		Kit.writeToCsv(kits);
 		
 		//--------------- Calculate Country/Haplogroup Statistics --------------//
-		CountryStatistics russiaSt = new CountryStatistics( "Russia", kits );
+		CountryStatistics russiaSt = new CountryStatistics( "Scotland", kits );
 		russiaSt.print_info();
 		
-		// FtdnaStore store = new FtdnaStore();
-		// store.store(kits); 
-		
+		//FtdnaStore store = new FtdnaStore();
+		//store.store(kits);
+
+		if(true)
+			return;
+
 		//////////////////////////////////////
 		
 		List<Kit> kits3 = new ArrayList<>();

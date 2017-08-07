@@ -1,0 +1,2779 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	Family Tree DNA - R1a1a and Subclades Y-DNA Project
+</title><link href="/Skins/Skin_2/publicWebsite_v2.css" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>(window.jQuery)||document.write('<script src="/bundles/scripts/jquery"><\/script>');</script>
+
+    <script type="text/javascript" src="/js/jquery.hoverIntent.minified.js"></script>
+    <link href="/common/css/header.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        #mapFrame {
+            width: 960px;
+            margin: 0px auto;
+            margin-top: 20px;
+        }
+
+        .toolbar {
+            padding: 8px 10px;
+            background: #1A2F4B;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+            .toolbar .leftCol {
+                float: left;
+            }
+
+            .toolbar .rightCol {
+                float: right;
+            }
+
+        #groupSelect {
+            border: 1px solid #ebebeb;
+            background-color: #1A2F4B;
+            color: #ffffff;
+            padding: 2px;
+            font-size: 12px;
+        }
+
+        .toolbar .button {
+            font-family: Arial, Helvetica, Sans-Serif;
+            font-size: 12px;
+            vertical-align: middle;
+            margin: 0px;
+            padding: 0px 2px;
+            height: 22px;
+            background: none;
+            color: White;
+            border: 1px solid white;
+            cursor: pointer;
+        }
+
+        #mapContainer {
+            overflow: hidden;
+            background: #ebebeb;
+            height: 500px;
+        }
+
+        #matchList {
+            float: left;
+            background: #ebebeb;
+            height: 500px;
+            display: none;
+        }
+
+        #matchListSelect {
+            width: 230px;
+            margin: 10px 10px 0px 10px;
+            padding: 0px;
+            height: 480px;
+            font-size: 11px;
+            overflow: auto;
+            background: #ffffff;
+        }
+
+            #matchListSelect li {
+                list-style-type: none;
+                padding: 3px 5px;
+                border-bottom: 1px solid #ebebeb;
+            }
+
+                #matchListSelect li img {
+                    width: 10px;
+                    height: 10px;
+                    background: #ffffff;
+                    border: 1px solid black;
+                    margin-right: 5px;
+                    margin-top: 2px;
+                    vertical-align: top;
+                }
+
+                #matchListSelect li a:link, #matchListSelect li a:visited {
+                    display: block;
+                    cursor: pointer;
+                    text-decoration: none;
+                    padding: 1px 0px;
+                    outline: none;
+                    color: #1A2F4B;
+                }
+
+                #matchListSelect li a:hover {
+                    background: #ebebeb;
+                    color: #1A2F4B;
+                    outline: none;
+                }
+
+        #mapCanvas {
+            height: 500px;
+            float: right;
+            width: 710px;
+            width: 960px;
+            overflow: hidden;
+        }
+
+        #yourMatches {
+            width: 190px;
+            margin-left: 10px;
+        }
+
+        #totalMatches {
+            margin-bottom: 8px;
+        }
+
+        #toggleMatchList {
+            width: 190px;
+            margin-right: 10px;
+        }
+
+        #totalMatches {
+            font-weight: bold;
+        }
+
+        #swatches {
+            margin: 5px 0px 0px 0px;
+            padding: 0px;
+            overflow: auto;
+        }
+
+            #swatches li {
+                float: left;
+                margin-right: 5px;
+                list-style-type: none;
+            }
+
+                #swatches li span {
+                    display: block;
+                    text-align: center;
+                }
+
+                #swatches li img {
+                    width: 14px;
+                    height: 14px;
+                    display: block;
+                    border: 1px solid #ffffff;
+                }
+
+        .infoWinBtnDiv {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+            .infoWinBtnDiv button {
+                font-family: Arial, Helvetica, Sans-Serif;
+                font-size: 12px;
+                vertical-align: middle;
+                margin: 0px 3px;
+                padding: 0px 2px;
+                background: none;
+                color: #1A2F4B;
+                border: 1px solid #909090;
+                cursor: pointer;
+            }
+
+            .infoWinBtnDiv .selectBtn {
+                color: #ffffff;
+                background: #1A2F4B;
+            }
+
+        #loadingDiv {
+            background: #ffffff;
+            padding: 5px;
+            position: absolute;
+            border: 1px solid #1A2F4B;
+            color: #1A2F4B;
+            z-index: 300;
+            font-weight: bold;
+            width: 160px;
+            margin: 200px 0px 0px 400px;
+            text-align: center;
+        }
+
+            #loadingDiv img {
+                vertical-align: middle;
+                margin-right: 5px;
+            }
+
+        .nosee {
+            display: none;
+        }
+    </style>
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" /></head>
+<body class="navigation-small" onload="initMap();">
+    
+        
+<script>
+  dataLayer = [{
+    'userID': '316305'
+  } ];
+</script>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src='//www.googletagmanager.com/ns.html?id=GTM-KQDZXJ'
+height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KQDZXJ');</script>
+<!-- End Google Tag Manager -->
+
+<!--SteelHouse Tracking Pixel-->
+<script type='text/javascript'>
+(function(){'use strict';var e=null,b='4.0.0',n='12097',additional='',t,r,i;try{t=top.document.referer!==''?encodeURIComponent(top.document.referrer.substring(0,2048)):''}catch(o){t=document.referrer!==null?document.referrer.toString().substring(0,2048):''}try{r=window&&window.top&&document.location&&window.top.location===document.location?document.location:window&&window.top&&window.top.location&&''!==window.top.location?window.top.location:document.location}catch(u){r=document.location}try{i=parent.location.href!==''?encodeURIComponent(parent.location.href.toString().substring(0,2048)):''}catch(a){try{i=r!==null?encodeURIComponent(r.toString().substring(0,2048)):''}catch(f){i=''}}var l,c=document.createElement('script'),h=null,p=document.getElementsByTagName('script'),d=Number(p.length)-1,v=document.getElementsByTagName('script')[d];if(typeof l==='undefined'){l=Math.floor(Math.random()*1e17)}h='dx.steelhousemedia.com/spx?'+'dxver='+b+'&shaid='+n+'&tdr='+t+'&plh='+i+'&cb='+l+additional;c.type='text/javascript';c.src=('https:'===document.location.protocol?'https://':'http://')+h;v.parentNode.insertBefore(c,v)})()
+</script>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function()
+{n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}
+;if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '879822655461455');
+fbq('track', 'PageView');</script>
+<noscript><img height='1' width='1' style='display:none'
+src='https://www.facebook.com/tr?id=879822655461455&ev=PageView&noscript=1'
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+    
+    <form method="post" action="./R1a?iframe=yresults" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZIGWnGFI2xfx7vmwY_UkL8DdPGW3WSY5dNFkNCk5SDtu9DShe6A64MylHUxdUbjxw28TOZElVKr9QJdLPJWWx2CTpaf_qmm4EWb2cBfBdom20&amp;t=636283902552661246" type="text/javascript"></script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="66676097" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+</div>
+        <input type="hidden" name="ctl00$hfGroupID" id="hfGroupID" value="R1a_and_subclades" />
+        <input type="hidden" name="ctl00$hfAutoJoinInd" id="hfAutoJoinInd" value="True" />
+        <div id="contentDiv">
+            <table border="0" cellpadding="0" cellspacing="0" id="contentFrame">
+                
+                <tr id="contentBody">
+                    <td>
+                        <div id="contentPane">
+                            
+    <input type="hidden" name="ctl00$MainContent$hfBcgGroupName" id="MainContent_hfBcgGroupName" value="R1a_and_subclades" />
+    
+    
+    
+
+    
+    
+    
+    
+    <div id="MainContent_panelYResults">
+	
+        
+        
+        <!-- YDNA here -->
+        <div id="MainContent_pnlYDNAResClassic">
+		
+            <h1 class="seperatorBottom">
+                R1a1a and Subclades Y-DNA Project
+                - Y-DNA Classic Chart</h1>
+            <p style="max-width: 960px;">
+                For genealogy within the most recent fifteen generations, STR markers help define
+                paternal lineages. Y-DNA STR markers change (mutate) often enough that most men
+                who share the same STR results also share a recent paternal lineage. This
+                page displays Y-Chromosome DNA (Y-DNA) STR results for the project. It uses the
+                classic format. The columns display each project member's kit number, paternal ancestry
+                information according to project settings, the paternal tree branch (haplogroup),
+                and actual STR marker results. The color coding of STR marker names is explained
+                <a href="/learn/project-administration/gap-reference/colors-y-dna-results-chart-heading/"
+                    target="_blank">here</a>. In the haplogroups column, haplogroups in green are
+                confirmed by SNP testing. Haplogroups in red are predicted. You may learn more about
+                Y-DNA STRs on the <a href="/learn/user-guide/y-dna-myftdna/y-str-results-page/"
+                    target="_blank">Understanding Y-DNA STRs</a> learning page.
+
+            </p>
+            <div id="Div1">
+                
+<style type="text/css">
+    .GridMaster {
+        border-top: 1px solid silver;
+        border-left: 1px solid silver;
+        margin-bottom: 20px;
+    }
+
+        .GridMaster th.Marker div {
+            /* Safari */
+            -webkit-transform: rotate(90deg);
+            /* Firefox */
+            -moz-transform: rotate(90deg);
+            /* IE */
+            -ms-transform: rotate(90deg);
+            /* Opera */
+            -o-transform: rotate(90deg);
+            /* Internet Explorer */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+            font-size: 14px;
+            padding: 2px;
+            width: 15px;
+        }
+
+        .GridMaster th.Marker {
+            vertical-align: top;
+            width: 10px;
+        }
+
+        .GridMaster th {
+            color: White;
+            height: 100px;
+            padding: 5px;
+            line-height: .9em;
+            border-right: 1px solid silver;
+            border-bottom: 1px solid silver;
+            background-color: #FFFFFF;
+            white-space: nowrap;
+        }
+
+    th.Data-Header {
+        background-color: #394166;
+    }
+
+    .GridMaster th.STR-Header {
+        background-color: #394166;
+    }
+
+    .GridMaster th.PP3-Header {
+        background-color: #41678A;
+    }
+
+    .GridMaster th.MP5-Header {
+        background-color: #2E8899;
+    }
+
+    .GridMaster th.MP6-Header {
+        background-color: #44A1b8;
+    }
+
+    .GridMaster th.MP7-Header {
+        background-color: #44A1b8;
+    }
+
+    .GridMaster th.MP8-Header {
+        background-color: #44A1b8;
+    }
+
+    .GridMaster th.MP9-Header {
+        background-color: #5ec8e2;
+    }
+
+    .GridMaster th.MP10-Header {
+        background-color: #5ec8e2;
+    }
+
+    .GridMaster th.MP11-Header {
+        background-color: #5ec8e2;
+    }
+
+    .GridMaster th.MP12-Header {
+        background-color: #5ec8e2;
+    }
+
+    .GridMaster th.MP13-Header {
+        background-color: #5ec8e2;
+    }
+
+    .GridMaster th a {
+        text-decoration: none;
+    }
+
+    .GridMaster td, .GridMaster th {
+        text-align: center;
+        white-space: nowrap;
+        padding: 2px;
+    }
+
+        .GridMaster td.LeftAlign {
+            text-align: left;
+        }
+
+    .GridMaster th, .GridMaster td {
+        border-right: 1px solid silver;
+        border-bottom: 1px solid silver;
+    }
+
+    .AspNet-GridView-Alternate {
+        background-color: #E6E6E6;
+    }
+
+    .GridMaster th.bgRed {
+        background: #69001a;
+    }
+
+    .haplo1 {
+        color: Red;
+    }
+
+    .haplo0 {
+        color: Green;
+    }
+
+    #contentBody td {
+        padding: 0px 0px;
+    }
+</style>
+<input type="hidden" name="ctl00$MainContent$classic1$hfBCGGROUP" id="MainContent_classic1_hfBCGGROUP" />
+<input type="hidden" name="ctl00$MainContent$classic1$hfNumRows" id="MainContent_classic1_hfNumRows" />
+<div class="formColumn">
+    <b>Markers:</b>
+    <select name="ctl00$MainContent$classic1$DropDownList1" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$classic1$DropDownList1\&#39;,\&#39;\&#39;)&#39;, 0)" id="MainContent_classic1_DropDownList1">
+			<option value="12">Y-DNA12</option>
+			<option value="25">Y-DNA25</option>
+			<option selected="selected" value="37">Y-DNA37</option>
+			<option value="67">Y-DNA67</option>
+			<option value="111">Y-DNA111</option>
+
+		</select>
+    &nbsp; <b>Page Size:</b>
+    <input name="ctl00$MainContent$classic1$tbPageSize" type="text" value="50000" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$classic1$tbPageSize\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="MainContent_classic1_tbPageSize" Value="500" style="width:30px;" />
+    &nbsp;
+    <input id="MainContent_classic1_cbShowAll" type="checkbox" name="ctl00$MainContent$classic1$cbShowAll" checked="checked" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$classic1$cbShowAll\&#39;,\&#39;\&#39;)&#39;, 0)" /><label for="MainContent_classic1_cbShowAll">Show All Columns</label>
+    &nbsp;
+</div>
+
+		<div class="AspNet-GridView" id="MainContent_classic1_GridView1">
+				<table cellpadding="0" cellspacing="0" class="GridMaster">
+					<thead>
+						<tr class="AspNet-GridView-Header">
+
+							<th class="Data-Header" scope="col"><div>Kit Number</div></th>
+
+							<th class="Data-Header" scope="col"><div>Paternal Ancestor Name</div></th>
+							<th class="Data-Header" scope="col"><div>Country</div></th>
+							<th class="Data-Header" scope="col"><div>Haplogroup</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS393</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS390</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS19</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS391</div></th>
+							<th class="STR-Header Marker bgRed" scope="col"><div>DYS385</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS426</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS388</div></th>
+							<th class="STR-Header Marker bgRed" scope="col"><div>DYS439</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS389i</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS392</div></th>
+							<th class="STR-Header Marker" scope="col"><div>DYS389ii</div></th>
+							<th class="PP3-Header Marker bgRed" scope="col"><div>DYS458</div></th>
+							<th class="PP3-Header Marker" scope="col"><div>DYS459</div></th>
+							<th class="PP3-Header Marker" scope="col"><div>DYS455</div></th>
+							<th class="PP3-Header Marker" scope="col"><div>DYS454</div></th>
+							<th class="PP3-Header Marker" scope="col"><div>DYS447</div></th>
+							<th class="PP3-Header Marker" scope="col"><div>DYS437</div></th>
+							<th class="PP3-Header Marker" scope="col"><div>DYS448</div></th>
+							<th class="PP3-Header Marker bgRed" scope="col"><div>DYS449</div></th>
+							<th class="PP3-Header Marker bgRed" scope="col"><div>DYS464</div></th>
+							<th class="MP5-Header Marker" scope="col"><div>DYS460</div></th>
+							<th class="MP5-Header Marker" scope="col"><div>Y-GATA-H4</div></th>
+							<th class="MP5-Header Marker" scope="col"><div>YCAII</div></th>
+							<th class="MP5-Header Marker bgRed" scope="col"><div>DYS456</div></th>
+							<th class="MP5-Header Marker" scope="col"><div>DYS607</div></th>
+							<th class="MP5-Header Marker bgRed" scope="col"><div>DYS576</div></th>
+							<th class="MP5-Header Marker bgRed" scope="col"><div>DYS570</div></th>
+							<th class="MP5-Header Marker bgRed" scope="col"><div>CDY</div></th>
+							<th class="MP5-Header Marker" scope="col"><div>DYS442</div></th>
+							<th class="MP5-Header Marker" scope="col"><div>DYS438</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYS531</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYS578</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYF395S1</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYS590</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYS537</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYS641</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYS472</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYF406S1</div></th>
+							<th class="MP6-Header Marker" scope="col"><div>DYS511</div></th>
+							<th class="MP7-Header Marker" scope="col"><div>DYS425</div></th>
+							<th class="MP7-Header Marker bgRed" scope="col"><div>DYS413</div></th>
+							<th class="MP7-Header Marker bgRed" scope="col"><div>DYS557</div></th>
+							<th class="MP7-Header Marker" scope="col"><div>DYS594</div></th>
+							<th class="MP7-Header Marker" scope="col"><div>DYS436</div></th>
+							<th class="MP7-Header Marker" scope="col"><div>DYS490</div></th>
+							<th class="MP7-Header Marker" scope="col"><div>DYS534</div></th>
+							<th class="MP7-Header Marker" scope="col"><div>DYS450</div></th>
+							<th class="MP7-Header Marker" scope="col"><div>DYS444</div></th>
+							<th class="MP7-Header Marker bgRed" scope="col"><div>DYS481</div></th>
+							<th class="MP7-Header Marker" scope="col"><div>DYS520</div></th>
+							<th class="MP7-Header Marker bgRed" scope="col"><div>DYS446</div></th>
+							<th class="MP8-Header Marker" scope="col"><div>DYS617</div></th>
+							<th class="MP8-Header Marker" scope="col"><div>DYS568</div></th>
+							<th class="MP8-Header Marker" scope="col"><div>DYS487</div></th>
+							<th class="MP8-Header Marker" scope="col"><div>DYS572</div></th>
+							<th class="MP8-Header Marker" scope="col"><div>DYS640</div></th>
+							<th class="MP8-Header Marker" scope="col"><div>DYS492</div></th>
+							<th class="MP8-Header Marker" scope="col"><div>DYS565</div></th>
+							<th class="MP9-Header Marker" scope="col"><div>DYS710</div></th>
+							<th class="MP9-Header Marker" scope="col"><div>DYS485</div></th>
+							<th class="MP9-Header Marker" scope="col"><div>DYS632</div></th>
+							<th class="MP9-Header Marker" scope="col"><div>DYS495</div></th>
+							<th class="MP9-Header Marker" scope="col"><div>DYS540</div></th>
+							<th class="MP9-Header Marker" scope="col"><div>DYS714</div></th>
+							<th class="MP9-Header Marker" scope="col"><div>DYS716</div></th>
+							<th class="MP9-Header Marker" scope="col"><div>DYS717</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS505</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS556</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS549</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS589</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS522</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS494</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS533</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS636</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS575</div></th>
+							<th class="MP10-Header Marker" scope="col"><div>DYS638</div></th>
+							<th class="MP11-Header Marker" scope="col"><div>DYS462</div></th>
+							<th class="MP11-Header Marker" scope="col"><div>DYS452</div></th>
+							<th class="MP11-Header Marker" scope="col"><div>DYS445</div></th>
+							<th class="MP11-Header Marker" scope="col"><div>Y-GATA-A10</div></th>
+							<th class="MP11-Header Marker" scope="col"><div>DYS463</div></th>
+							<th class="MP11-Header Marker" scope="col"><div>DYS441</div></th>
+							<th class="MP11-Header Marker" scope="col"><div>Y-GGAAT-1B07</div></th>
+							<th class="MP11-Header Marker" scope="col"><div>DYS525</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS712</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS593</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS650</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS532</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS715</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS504</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS513</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS561</div></th>
+							<th class="MP12-Header Marker" scope="col"><div>DYS552</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS726</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS635</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS587</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS643</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS497</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS510</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS434</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS461</div></th>
+							<th class="MP13-Header Marker" scope="col"><div>DYS435</div></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP4132>YP4131</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">B10992</td>
+
+							<td class="LeftAlign">Matthew Travers b,abt 1715 - d,1786 - Lancashire</td>
+							<td class="LeftAlign">England</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_0" class="haplo0">R-YP4131</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>19</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>27</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>11</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>16</td>
+							<td>33-39</td>
+							<td>13</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>13</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>39</td>
+							<td>14</td>
+							<td>9</td>
+							<td>15</td>
+							<td>12</td>
+							<td>28</td>
+							<td>26</td>
+							<td>19</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>12</td>
+							<td>10</td>
+							<td>9</td>
+							<td>12</td>
+							<td>11</td>
+							<td>10</td>
+							<td>11</td>
+							<td>11</td>
+							<td>30</td>
+							<td>14</td>
+							<td>15</td>
+							<td>24</td>
+							<td>13</td>
+							<td>11</td>
+							<td>10</td>
+							<td>20</td>
+							<td>16</td>
+							<td>18</td>
+							<td>14</td>
+							<td>24</td>
+							<td>15</td>
+							<td>12</td>
+							<td>15</td>
+							<td>26</td>
+							<td>13</td>
+							<td>27</td>
+							<td>18</td>
+							<td>10</td>
+							<td>15</td>
+							<td>17</td>
+							<td>9</td>
+							<td>11</td>
+							<td>11</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">B13606</td>
+
+							<td class="LeftAlign">Joel Jones, b1790 Newberry-SC d1876 Pumpkintown-SC</td>
+							<td class="LeftAlign">Unknown Origin</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_1" class="haplo0">R-YP4131</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>19</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>29</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>12</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>16</td>
+							<td>33-40</td>
+							<td>13</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>13</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>37</td>
+							<td>14</td>
+							<td>9</td>
+							<td>15</td>
+							<td>12</td>
+							<td>28</td>
+							<td>26</td>
+							<td>19</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>10</td>
+							<td>9</td>
+							<td>12</td>
+							<td>11</td>
+							<td>10</td>
+							<td>11</td>
+							<td>11</td>
+							<td>30</td>
+							<td>12</td>
+							<td>15</td>
+							<td>24</td>
+							<td>13</td>
+							<td>11</td>
+							<td>10</td>
+							<td>20</td>
+							<td>16</td>
+							<td>19</td>
+							<td>13</td>
+							<td>23</td>
+							<td>15</td>
+							<td>13</td>
+							<td>15</td>
+							<td>26</td>
+							<td>13</td>
+							<td>26</td>
+							<td>18</td>
+							<td>10</td>
+							<td>15</td>
+							<td>17</td>
+							<td>9</td>
+							<td>11</td>
+							<td>11</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP4132>YP4131-x (Big Y needed) [YP4131+]</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">540824</td>
+
+							<td class="LeftAlign">Peter Vess b. c1798 Ireland, d. NC</td>
+							<td class="LeftAlign">Ireland</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_2" class="haplo0">R-YP4131</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>18</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>30</td>
+							<td>12-13-15-17</td>
+							<td>10</td>
+							<td>11</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>17</td>
+							<td>33-40</td>
+							<td>13</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>14</td>
+							<td>24</td>
+							<td>21</td>
+							<td>12</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>37</td>
+							<td>14</td>
+							<td>9</td>
+							<td>15</td>
+							<td>12</td>
+							<td>28</td>
+							<td>26</td>
+							<td>19</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>12</td>
+							<td>10</td>
+							<td>9</td>
+							<td>12</td>
+							<td>11</td>
+							<td>10</td>
+							<td>11</td>
+							<td>11</td>
+							<td>30</td>
+							<td>13</td>
+							<td>15</td>
+							<td>24</td>
+							<td>13</td>
+							<td>11</td>
+							<td>10</td>
+							<td>20</td>
+							<td>16</td>
+							<td>18</td>
+							<td>14</td>
+							<td>23</td>
+							<td>15</td>
+							<td>13</td>
+							<td>15</td>
+							<td>26</td>
+							<td>13</td>
+							<td>26</td>
+							<td>18</td>
+							<td>10</td>
+							<td>15</td>
+							<td>17</td>
+							<td>9</td>
+							<td>11</td>
+							<td>11</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">376309</td>
+
+							<td class="LeftAlign">Hugh Murray 1754-1795 Edinburgh &amp; Anne Young&gt; Hugh</td>
+							<td class="LeftAlign">Scotland</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_3" class="haplo0">R-YP4131</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>17</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>30</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>12</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>16</td>
+							<td>32-40</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>14</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">299042</td>
+
+							<td class="LeftAlign">Hugh Murray 1754-1795 Edinburgh &amp; Anne Young&gt;David</td>
+							<td class="LeftAlign">Scotland</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_4" class="haplo0">R-M269</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>17</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>30</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>12</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>16</td>
+							<td>33-40</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>14</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP4132>YP4131-x1 (YP4131 not tested, Big Y needed)</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">448372</td>
+
+							<td class="LeftAlign">David Mill/Milne, 1816-1892, Montrose, Forfar, SCT</td>
+							<td class="LeftAlign">Scotland</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_5" class="haplo1">R-M173</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>18</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>25</td>
+							<td>14</td>
+							<td>20</td>
+							<td>30</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>12</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>16</td>
+							<td>33-40</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>10</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>13</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>37</td>
+							<td>14</td>
+							<td>9</td>
+							<td>15</td>
+							<td>12</td>
+							<td>27</td>
+							<td>26</td>
+							<td>19</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>10</td>
+							<td>9</td>
+							<td>12</td>
+							<td>11</td>
+							<td>10</td>
+							<td>11</td>
+							<td>11</td>
+							<td>30</td>
+							<td>13</td>
+							<td>14</td>
+							<td>24</td>
+							<td>13</td>
+							<td>11</td>
+							<td>10</td>
+							<td>19</td>
+							<td>16</td>
+							<td>18</td>
+							<td>14</td>
+							<td>23</td>
+							<td>15</td>
+							<td>13</td>
+							<td>15</td>
+							<td>26</td>
+							<td>13</td>
+							<td>26</td>
+							<td>18</td>
+							<td>10</td>
+							<td>15</td>
+							<td>17</td>
+							<td>9</td>
+							<td>11</td>
+							<td>11</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">219391</td>
+
+							<td class="LeftAlign">Robert John Forbes b 1823  Ireland,  d1915 Canada</td>
+							<td class="LeftAlign">Ireland</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_6" class="haplo0">R-M420</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>19</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>23</td>
+							<td>14</td>
+							<td>20</td>
+							<td>31</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>12</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>17</td>
+							<td>16</td>
+							<td>33-37</td>
+							<td>13</td>
+							<td>11</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">322908</td>
+
+							<td class="LeftAlign">David P. Hay b, abt. 1760 &amp; d,1825 Laurens Co Ga. </td>
+							<td class="LeftAlign">Unknown Origin</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_7" class="haplo0">R-M173</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>19</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>29</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>12</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>16</td>
+							<td>33-40</td>
+							<td>13</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>14</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">413118</td>
+
+							<td class="LeftAlign">Alexander Lawrence Anderson, b. 1790 and d. 1858</td>
+							<td class="LeftAlign">Scotland</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_8" class="haplo1">R-M173</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>19</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>31</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>12</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>17</td>
+							<td>16</td>
+							<td>33-39</td>
+							<td>13</td>
+							<td>11</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">73823</td>
+
+							<td class="LeftAlign">John Pickering b. 1615 Warwickshire, England ??</td>
+							<td class="LeftAlign">England</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_9" class="haplo0">R-M173</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>21</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>30</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>11</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>16</td>
+							<td>33-40</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>15</td>
+							<td>8</td>
+							<td>14</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">B83257</td>
+
+							<td class="LeftAlign">THomas Hunt 1600  North   Riding  Yorkshire Englan</td>
+							<td class="LeftAlign">England</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_10" class="haplo1">R-M173</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-13</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>19</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>21</td>
+							<td>30</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>11</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>16</td>
+							<td>33-41</td>
+							<td>13</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>13</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">66096</td>
+
+							<td class="LeftAlign">Thomas Pate b 1703 d 1774 Virginia</td>
+							<td class="LeftAlign">England</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_11" class="haplo0">R-M173</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>13-13</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>13</td>
+							<td>29</td>
+							<td>19</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>30</td>
+							<td>12-13-15-16</td>
+							<td>11</td>
+							<td>11</td>
+							<td>19-22</td>
+							<td>15</td>
+							<td>16</td>
+							<td>17</td>
+							<td>16</td>
+							<td>34-40</td>
+							<td>13</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>8</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>14</td>
+							<td>24</td>
+							<td>21</td>
+							<td>13</td>
+							<td>12</td>
+							<td>11</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP4132>YP4131-x2 (YP4141,YP4131 not tested; more STRs and/or Big Y needed)</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">N78270</td>
+
+							<td class="LeftAlign">&nbsp;</td>
+							<td class="LeftAlign">Italy</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_12" class="haplo0">R-M173</span>
+            </td>
+							<td>13</td>
+							<td>24</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-13</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>13</td>
+							<td>28</td>
+							<td>18</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>24</td>
+							<td>14</td>
+							<td>20</td>
+							<td>30</td>
+							<td>12-12-15-16</td>
+							<td>11</td>
+							<td>10</td>
+							<td>19-19</td>
+							<td>15</td>
+							<td>16</td>
+							<td>17</td>
+							<td>16</td>
+							<td>34-40</td>
+							<td>14</td>
+							<td>11</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP4132>YP6362-x (YP6362 not tested; Big Y needed)</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">648446</td>
+
+							<td class="LeftAlign">Alkandari</td>
+							<td class="LeftAlign">Kuwait</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_13" class="haplo0">R-YP4132</span>
+            </td>
+							<td>13</td>
+							<td>25</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>11</td>
+							<td>13</td>
+							<td>14</td>
+							<td>30</td>
+							<td>16</td>
+							<td>9-9-9</td>
+							<td>11</td>
+							<td>11</td>
+							<td>25</td>
+							<td>15</td>
+							<td>19</td>
+							<td>30</td>
+							<td>12-12-12-12-15-15</td>
+							<td>11</td>
+							<td>11</td>
+							<td>19-20</td>
+							<td>15</td>
+							<td>16</td>
+							<td>15</td>
+							<td>16</td>
+							<td>33-35-37</td>
+							<td>12</td>
+							<td>11</td>
+							<td>11</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>11</td>
+							<td>10</td>
+							<td>8</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>11</td>
+							<td>12</td>
+							<td>13</td>
+							<td>15</td>
+							<td>9</td>
+							<td>13</td>
+							<td>23</td>
+							<td>21</td>
+							<td>14</td>
+							<td>12</td>
+							<td>11</td>
+							<td>13</td>
+							<td>10</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>35</td>
+							<td>15</td>
+							<td>9</td>
+							<td>15</td>
+							<td>13</td>
+							<td>26</td>
+							<td>26</td>
+							<td>19</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>11</td>
+							<td>10</td>
+							<td>9</td>
+							<td>12</td>
+							<td>11</td>
+							<td>10</td>
+							<td>11</td>
+							<td>11</td>
+							<td>30</td>
+							<td>13</td>
+							<td>13</td>
+							<td>24</td>
+							<td>13</td>
+							<td>11</td>
+							<td>10</td>
+							<td>21</td>
+							<td>16</td>
+							<td>17</td>
+							<td>15</td>
+							<td>25</td>
+							<td>15</td>
+							<td>13</td>
+							<td>15</td>
+							<td>26</td>
+							<td>13</td>
+							<td>25</td>
+							<td>18</td>
+							<td>10</td>
+							<td>15</td>
+							<td>17</td>
+							<td>9</td>
+							<td>11</td>
+							<td>11</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP5018* (more STRs needed)</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">407716</td>
+
+							<td class="LeftAlign">Najaf, Iraq</td>
+							<td class="LeftAlign">Iraq</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_14" class="haplo0">R-YP4141</span>
+            </td>
+							<td>13</td>
+							<td>23</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>11</td>
+							<td>12</td>
+							<td>13</td>
+							<td>28</td>
+							<td>17</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>12</td>
+							<td>26</td>
+							<td>15</td>
+							<td>19</td>
+							<td>31</td>
+							<td>12-12-16-16</td>
+							<td>11</td>
+							<td>11</td>
+							<td>19-23</td>
+							<td>15</td>
+							<td>16</td>
+							<td>17</td>
+							<td>17</td>
+							<td>37-38</td>
+							<td>12</td>
+							<td>11</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP5018*-x (YP5018 not tested; Big Y needed)</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">311340</td>
+
+							<td class="LeftAlign">&nbsp;</td>
+							<td class="LeftAlign">Turkey</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_15" class="haplo0">R-YP4141</span>
+            </td>
+							<td>13</td>
+							<td>23</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>10</td>
+							<td>13</td>
+							<td>13</td>
+							<td>30</td>
+							<td>17</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>12</td>
+							<td>25</td>
+							<td>15</td>
+							<td>19</td>
+							<td>32</td>
+							<td>12-12-16-17</td>
+							<td>11</td>
+							<td>10</td>
+							<td>19-23</td>
+							<td>15</td>
+							<td>17</td>
+							<td>17</td>
+							<td>17</td>
+							<td>33-38</td>
+							<td>11</td>
+							<td>11</td>
+							<td>9</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>11</td>
+							<td>10</td>
+							<td>8</td>
+							<td>10</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>15</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>12</td>
+							<td>21</td>
+							<td>21</td>
+							<td>15</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP5018>YP5664*</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">M8363</td>
+
+							<td class="LeftAlign">ali,</td>
+							<td class="LeftAlign">Qatar</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_16" class="haplo0">R-YP4141</span>
+            </td>
+							<td>13</td>
+							<td>23</td>
+							<td>17</td>
+							<td>11</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>30</td>
+							<td>16</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>12</td>
+							<td>26</td>
+							<td>15</td>
+							<td>19</td>
+							<td>32</td>
+							<td>12-12-16-17</td>
+							<td>11</td>
+							<td>11</td>
+							<td>19-23</td>
+							<td>15</td>
+							<td>17</td>
+							<td>19</td>
+							<td>16</td>
+							<td>34-37</td>
+							<td>12</td>
+							<td>11</td>
+							<td>9</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>11</td>
+							<td>10</td>
+							<td>8</td>
+							<td>10</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>12</td>
+							<td>23</td>
+							<td>21</td>
+							<td>14</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+							<td class="LeftAlign" colspan="106" style="background-color:#FF7F50;">1.  M420>YP4141>YP5018>YP5664-A-x (one more Big Y needed)</td>
+						</tr>
+						<tr class="AspNet-GridView-Alternate">
+
+							<td class="LeftAlign">M11251</td>
+
+							<td class="LeftAlign">Bazqamah</td>
+							<td class="LeftAlign">Yemen</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_17" class="haplo0">R-YP4141</span>
+            </td>
+							<td>13</td>
+							<td>23</td>
+							<td>15</td>
+							<td>11</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>31</td>
+							<td>17</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>12</td>
+							<td>26</td>
+							<td>15</td>
+							<td>19</td>
+							<td>29</td>
+							<td>12-12-16-17</td>
+							<td>11</td>
+							<td>10</td>
+							<td>19-23</td>
+							<td>15</td>
+							<td>17</td>
+							<td>18</td>
+							<td>17</td>
+							<td>34-38</td>
+							<td>12</td>
+							<td>11</td>
+							<td>9</td>
+							<td>8</td>
+							<td>15-16</td>
+							<td>8</td>
+							<td>11</td>
+							<td>10</td>
+							<td>8</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>22-22</td>
+							<td>14</td>
+							<td>10</td>
+							<td>12</td>
+							<td>12</td>
+							<td>14</td>
+							<td>8</td>
+							<td>12</td>
+							<td>23</td>
+							<td>21</td>
+							<td>14</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>11</td>
+							<td>11</td>
+							<td>12</td>
+							<td>12</td>
+							<td>34</td>
+							<td>15</td>
+							<td>9</td>
+							<td>14</td>
+							<td>12</td>
+							<td>27</td>
+							<td>24</td>
+							<td>19</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>10</td>
+							<td>9</td>
+							<td>12</td>
+							<td>11</td>
+							<td>10</td>
+							<td>11</td>
+							<td>11</td>
+							<td>30</td>
+							<td>13</td>
+							<td>13</td>
+							<td>24</td>
+							<td>13</td>
+							<td>11</td>
+							<td>9</td>
+							<td>18</td>
+							<td>15</td>
+							<td>18</td>
+							<td>15</td>
+							<td>25</td>
+							<td>15</td>
+							<td>12</td>
+							<td>15</td>
+							<td>25</td>
+							<td>12</td>
+							<td>23</td>
+							<td>18</td>
+							<td>10</td>
+							<td>15</td>
+							<td>18</td>
+							<td>9</td>
+							<td>12</td>
+							<td>11</td>
+						</tr>
+						<tr class="AspNet-GridView-Normal">
+
+							<td class="LeftAlign">E20643</td>
+
+							<td class="LeftAlign">Kurmanj Dersimian, Bext&#237;yaran (Behtiyar) t., Hozat</td>
+							<td class="LeftAlign">Unknown Origin</td>
+							<td class="LeftAlign">
+                <span id="MainContent_classic1_GridView1_Label6_18" class="haplo1">R-M173</span>
+            </td>
+							<td>13</td>
+							<td>23</td>
+							<td>15</td>
+							<td>11</td>
+							<td>12-12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>12</td>
+							<td>13</td>
+							<td>13</td>
+							<td>31</td>
+							<td>18</td>
+							<td>9-9</td>
+							<td>11</td>
+							<td>12</td>
+							<td>26</td>
+							<td>15</td>
+							<td>19</td>
+							<td>29</td>
+							<td>12-12-12-12</td>
+							<td>11</td>
+							<td>10</td>
+							<td>19-23</td>
+							<td>15</td>
+							<td>16</td>
+							<td>18</td>
+							<td>17</td>
+							<td>34-38</td>
+							<td>12</td>
+							<td>11</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+
+		</div>
+
+
+            </div>
+        
+	</div>
+        
+        
+        
+    
+</div>
+    
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="Div1">
+                            
+    <div id="PublicJavascript_pnlPublicJavascript">
+	
+        
+    
+</div>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr id="contentFooter">
+                    <td>
+                        <div id="footer">
+                            
+                            <img src="//secure.adnxs.com/seg?add=207630&t=2" width="1" height="1" /><img src="//ads.tlvmedia.com/pixel?id=1536120&t=2" width="1" height="1" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/javascript" src="/Skins/Skin_2/js/publicWebsite_v2.js"></script>

@@ -1,5 +1,7 @@
 package gr.ftdnascan;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,9 @@ public class CountryStatistics {
 	
 	private final String country;
 	private final List<Kit> kits;
-	
+
+	private static final Logger LOGGER = LogManager.getLogger();
+
 	public CountryStatistics( String country, List<Kit> kits ) {
 		this.country = country;
 		this.kits = new ArrayList<>();
@@ -16,6 +20,8 @@ public class CountryStatistics {
 			.sorted((k,l) -> k.haplogroup.compareTo(l.haplogroup))
 			.filter((k) -> k.country2.equalsIgnoreCase("Russia"))
 			.forEach((k) -> this.kits.add(k));
+
+		LOGGER.info("Statistics for " + country + ": " + kits.size());
 	}
 	
 	public void print_info() {

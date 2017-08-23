@@ -33,7 +33,22 @@ public class SimpleTest {
     }
 
     @Test
-    public void subtract() throws Exception {
+    public void simpleKitTest() throws Exception {
+        String raw = "9. ..>Z645>Z93(?)>Z94(?)-x1 (Big Y. Z93 SNP test or R1a-Z93 SNP pack needed) [L657-]";
+        Kit kit1 = new Kit( "", raw, "123123", "Ancestor 1", "Algeria", "1,2,3", 3 );
+
+        assertEquals(9, kit1.section );
+        if( !kit1.rawGroup.equals(raw) )
+            fail();
+        if( !kit1.haplogroup.equals("Z94") )
+            fail();
+        if( !kit1.country2.equals("Arabia") )
+            fail();
+        if( !kit1.recommendation.startsWith("Big Y") )
+            fail();
+        if( !kit1.recommendation.endsWith("pack needed") )
+            fail();
+
     }
 
     @Test

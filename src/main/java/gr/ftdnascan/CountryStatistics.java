@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import java.util.ArrayList;
 import java.util.List;
+import com.diffplug.common.base.TreeNode;
 
 public class CountryStatistics {
 	
@@ -22,6 +23,8 @@ public class CountryStatistics {
 			.forEach((k) -> this.kits.add(k));
 
 		LOGGER.info("Statistics for " + country + ": " + kits.size());
+
+		durianTreeTest();
 	}
 	
 	public void print_info() {
@@ -30,4 +33,24 @@ public class CountryStatistics {
 		kits.forEach((k) -> k.print_info());
 	}
 
+	public void durianTreeTest() {
+		System.out.println( "durianTreeTest:");
+
+		TreeNode<String> tn = new TreeNode<String>(null, "Test");
+		System.out.println(tn.toString());
+
+		TreeNode<String> root = TreeNode.createTestData(
+				"root",
+				" bigNode1",
+				" bigNode2",
+				"  child1",
+				"  child2",
+				" bigNode3"
+		);
+
+		TreeNode<String> ch2 = root.findByContent("child2");
+		TreeNode<String> bn1 = root.getChildren().get(0);
+
+		System.out.println(root.toStringDeep());
+	}
 }

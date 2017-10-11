@@ -22,10 +22,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /** Class for manually constructing a tree, or for copying an existing tree. */
-public class TreeNode<T> {
+public class TreeNode<T> implements TreeNodeable<T> {
 	private TreeNode<T> parent;
 	private T content;
 	private List<TreeNode<T>> children;
@@ -56,9 +58,14 @@ public class TreeNode<T> {
 		} else {
 			children = new ArrayList<>(childCapacity);
 		}
+
+		if(content instanceof TreeNodeKnowledgeable) { // Consumer<TreeNode>) {
+			((TreeNodeKnowledgeable) content).setTreeNodeReference(this);
+		}
 	}
 
 	/** Returns the object which is encapsulated by this TreeNode. */
+	@Override
 	public T getContent() {
 		return content;
 	}
@@ -69,13 +76,29 @@ public class TreeNode<T> {
 	}
 
 	/** Returns the (possibly-null) parent of this TreeNode. */
+	@Override
 	public TreeNode<T> getParent() {
 		return parent;
 	}
 
+	/** Returns the (possibly-null) parent of this TreeNode. */
+	public void setParent( TreeNode<T> parent ) { this.parent = parent; }
+
 	/** Returns the children of this TreeNode. */
 	public List<TreeNode<T>> getChildren() {
 		return Collections.unmodifiableList(children);
+	}
+
+	/** Returns the children of this TreeNode. */
+	@Override
+	public List<TreeNodeable<T>> getNodeableChildren() {
+
+		List<TreeNode<T>> list = getChildren();
+		List<TreeNodeable<T>> newlist = new ArrayList<>();
+		for( TreeNode<T> t : list ) {
+			newlist.add( t );
+		}
+		return newlist;
 	}
 
 	/** Removes this TreeNode from its parent. */
@@ -275,5 +298,24 @@ public class TreeNode<T> {
 		} else {
 			throw new IllegalArgumentException(this.toString() + " has no child with content " + content);
 		}
+	}
+
+	public Optional<TreeNode<T>> findByContentOpt(T content) {
+		Optional<TreeNode<T>> opt = TreeStream.breadthFirst(treeDef(), this).filter(node -> node.getContent().equals(content)).findFirst();
+		return opt;
+	}
+
+	public TreeNode<T> findBelowByContent(T content) {
+		if( content == null )
+			return null;
+		if( this.getContent() != null && this.getContent().equals(content) )
+			return this;
+		List<TreeNode<T>> children = getChildren();
+		for( TreeNode<T> child : children ) {
+			TreeNode<T> childNode = child.findBelowByContent(content);
+			if(childNode != null)
+				return childNode;
+		}
+		return null;
 	}
 }

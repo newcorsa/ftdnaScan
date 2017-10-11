@@ -36,6 +36,9 @@ public class FtdnaPage {
 			if(line.contains( "<td class=\"LeftAlign\" colspan=\"106\"" )) {
 				String color = extractColor( line );
 				String ftdnaGroup = extractTableData( line );
+
+				//Haplogroup.processHaploText(ftdnaGroup);
+				Haplogroup haplo = TreeNodeManager.instance.addHaplogroup(color, ftdnaGroup);
 				
 				// process kits //
 				for( ; linenum < lines.size(); linenum++ ) {
@@ -69,6 +72,8 @@ public class FtdnaPage {
 								String strs = strBuilder.toString();								
 								
 								Kit kit = new Kit( color, ftdnaGroup, kitnum, ancestor, country, strs, strcount - 1 );
+
+								haplo.addKit(kit);
 								
 								if( 0 < kit.haplogroup.length() )
 									kits.add(kit);

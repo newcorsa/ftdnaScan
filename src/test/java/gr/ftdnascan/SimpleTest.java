@@ -52,15 +52,10 @@ public class SimpleTest {
     }
 
     @Test
-    public void multiply() throws Exception {
-    }
-
-    @Test
-    public void divide() throws Exception {
-    }
-
-    @Test
-    public void double15() throws Exception {
+    public void normalizeSequence() throws Exception {
+        String sequence = "M420>YP4141>YP4132>YP4131-x1";
+        String normalized = FtdnaSequenceBuilder.normalizeSequence(sequence);
+        assertEquals("M420>YP4141>YP4132>YP4131>YP4131-x1", normalized);
     }
 
     @Before

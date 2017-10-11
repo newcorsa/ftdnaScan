@@ -27,7 +27,13 @@ public class FtdnaScan {
 		
 		List<Kit> kits = FileLoader.loadKitsFromResources();
 
-		for(Kit kit: kits) { 
+		System.out.println( TreeNodeManager.root.toStringDeep() );
+
+		System.out.println( "\n VISIT ALL \n");
+
+		TreeNodeManager.root.visit( n -> System.out.println(n.longName()) );
+
+		for(Kit kit: kits) {
 			if( kit.ancestor.contains("Ch.") )
 				kit.print_info(); 
 			}

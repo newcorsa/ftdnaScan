@@ -7,14 +7,14 @@ import com.diffplug.common.base.TreeNodeable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Element<T> implements TreeNodeable<T>, TreeNodeKnowledgeable {
+public class Element<T> implements TreeNodeable<T>, TreeNodeKnowledgeable<T> {
 
     private TreeNodeable<T> treeNode = null;
 
     public TreeNodeable<T> getTreeNode() { return treeNode; }
 
     @Override
-    public void setTreeNodeReference( Object ref ) {
+    public void setTreeNodeReference( TreeNodeable<T> ref ) {
         try {
             treeNode = (TreeNodeable<T>) ref;
         }

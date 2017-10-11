@@ -77,6 +77,7 @@ public class FtdnaSequenceBuilder {
         fixed = fixed.replace(" -", "-"); // fix error in 558105: >M417>CTS4385>Y2894>L664>(S3478?)>S2894>S2880 -y
         fixed = fixed.replace(">(", ">"); // fix error in N128746: YP326>(CLD56?)>CLD12*
         fixed = fixed.replace("?)>", ">"); // fix error in N128746: YP326>(CLD56?)>CLD12*
+        fixed = fixed.replace("-A>", " "); // ..>Z282>PF6155>M458>PF7521>CTS11962>L1029>YP444>YP443>YP445-A>YP729
 
         fixed = fixed.replace("/", ">"); // needed for 72455 127747 454141: >Z93>Z94>Z2124>Z2125>S23592>S23201>YP1359/YFS102022
 

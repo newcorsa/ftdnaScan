@@ -39,7 +39,10 @@ public class FtdnaPage {
 
 				//Haplogroup.processHaploText(ftdnaGroup);
 				Haplogroup haplo = TreeNodeManager.instance.addHaplogroup(color, ftdnaGroup);
-				
+
+				if( haplo == null )
+					continue; // example: "Ungroupped"
+
 				// process kits //
 				for( ; linenum < lines.size(); linenum++ ) {
 					line = lines.get(linenum);

@@ -33,10 +33,15 @@ public class FtdnaScan {
 
 		TreeNodeManager.root.visit( n -> System.out.println(n.longName()) );
 
+		System.out.println( "\n VISIT ALL \n");
+
 		for(Kit kit: kits) {
 			if( kit.ancestor.contains("Ch.") )
 				kit.print_info(); 
 			}
+
+		if(true)
+			return;
 
 		kits.stream()
 				.filter((k) -> k.country2.equalsIgnoreCase("Scotland"))

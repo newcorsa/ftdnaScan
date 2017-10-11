@@ -1,6 +1,6 @@
 package com.diffplug.common.base;
 
-public interface TreeNodeKnowledgeable {
+public interface TreeNodeKnowledgeable<T> {
 
-    void setTreeNodeReference( Object ref );
+    void setTreeNodeReference( TreeNodeable<T> ref );
 }

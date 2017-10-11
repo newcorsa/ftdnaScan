@@ -30,7 +30,7 @@ public class TreeNodeManager {
             parent = haplo;
         }
 
-        System.out.println(root.toStringDeep());
+        //System.out.println(root.toStringDeep());
         return haplo;
     }
 
@@ -46,18 +46,16 @@ public class TreeNodeManager {
 
                 if( parent == null ) {
                     TreeNode<Haplogroup> newNode = new TreeNode<Haplogroup>(root, haplo);
-                    int n = 0;
                 } else {
                     TreeNode<Haplogroup> newParentNode = new TreeNode<Haplogroup>(root, parent);
                     TreeNode<Haplogroup> newNode = new TreeNode<Haplogroup>(newParentNode, haplo);
-                    int n = 0;
                 }
             } else {
                 TreeNode<Haplogroup> newNode = new TreeNode<Haplogroup>(foundParentNode, haplo);
-                int n = 0;
             }
         } else {
 
+            haplo.setTreeNodeReference(foundNode);
             foundNode.setContent(haplo); // change existence
 
             // check existing parent

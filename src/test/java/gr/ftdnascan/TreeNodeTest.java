@@ -52,7 +52,7 @@ public class TreeNodeTest {
     @Test
     public void treeNodeKnowledgeableInterface() throws Exception {
 
-        class KnowledgeableContent implements TreeNodeKnowledgeable {
+        class KnowledgeableContent implements TreeNodeKnowledgeable<String> {
             public String text;
             public TreeNode<String> ref = null;
 
@@ -60,7 +60,7 @@ public class TreeNodeTest {
 
             @Override public String toString() {return text;}
 
-            @Override public void setTreeNodeReference(Object ref) {
+            @Override public void setTreeNodeReference(TreeNodeable<String> ref) {
                 try {
                     this.ref = (TreeNode<String>) ref;
                 }
@@ -101,5 +101,17 @@ public class TreeNodeTest {
         TreeNode<String> treeNodeChild2 = treeNode.findByContent("child2");
 
         System.out.println( treeNodeChild2.toStringDeep() );
+    }
+
+    @Test
+    public void shouldAddHaplogroup() {
+
+        TreeNodeManager mgr = TreeNodeManager.instance;
+
+        TreeNodeManager.instance.addHaplogroup("COLOR", "1. M420>");
+        TreeNodeManager.instance.addHaplogroup("COLOR", "1. M420>");
+
+        TreeNode<Haplogroup> rt = TreeNodeManager.root;
+        rt.toString();
     }
 }

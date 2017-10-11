@@ -56,8 +56,10 @@ public class Haplogroup extends Element<Haplogroup> {
     public String longName() {
         TreeNodeable<Haplogroup> tn = this;
         int depth = tn.depth();
-        String spaces = String.join("", Collections.nCopies(depth, " "));
-        String longName = spaces + this.section + "." + this.name + "(" + associatedKits.size() + ")";
+        String section = 0 < this.section ? this.section + " " : "  ";
+        String spaces = String.join("", Collections.nCopies(depth, "."));
+        String kitsNum = 0 < associatedKits.size() ? "(" + associatedKits.size() + ")" : "";
+        String longName = section + spaces + " " + this.name + "  " + kitsNum;
         return longName;
     }
 }
